@@ -12,7 +12,7 @@ header{background:#133d2b;color:#fff;padding:19px 29px;display:flex;align-items:
 main{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:calc(100dvh - 90px);min-height:520px}.workspace{min-width:0;display:flex;flex-direction:column;position:relative}.toolbar{position:relative;z-index:3;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 15px;background:white;border-bottom:1px solid var(--line)}.search{flex:1;min-width:180px;position:relative}.search input,input#candidate{width:100%;border:1px solid #9bb3a4;border-radius:8px;background:#fbfdfb;padding:9px 11px;color:var(--ink)}#results{position:absolute;top:100%;left:0;width:100%;background:white;border:1px solid var(--line);box-shadow:0 8px 25px #13261920;max-height:320px;overflow:auto;padding:5px;border-radius:10px}#results button{display:block;width:100%;text-align:left;border:0;font-weight:500}#results p{margin:10px}.controls{display:flex;gap:5px;align-items:center;position:absolute;left:14px;bottom:14px;z-index:2;background:white;border:1px solid var(--line);border-radius:10px;padding:5px;box-shadow:0 4px 12px #13261912}.controls button{min-width:34px;padding:6px 7px}.controls output{min-width:56px;text-align:center;font-size:.82rem;font-variant-numeric:tabular-nums}
 #view{position:relative;flex:1;overflow:hidden;touch-action:none;cursor:grab;background-color:#edf3ee;background-image:radial-gradient(#b9cbbc 1px,transparent 1px);background-size:18px 18px}#view.dragging{cursor:grabbing}#scene{position:absolute;transform-origin:0 0}#edges{position:absolute;overflow:visible;pointer-events:none}.edge{fill:none;stroke:#7c9987;stroke-width:2}.edge.pending{stroke:#a06834;stroke-dasharray:6 5}.edge.related{stroke:#739185;stroke-dasharray:2 4}.node{position:absolute;width:252px;height:76px;display:flex;align-items:center;gap:4px;border:1px solid #b9cabf;border-left:4px solid var(--accent);border-radius:10px;background:white;box-shadow:0 3px 9px #17362312;overflow:hidden}.node.selected{border-color:var(--green);box-shadow:0 0 0 2px var(--green)}.node .label{border:0;background:transparent;text-align:left;align-self:stretch;flex:1;min-width:0;padding:7px 9px;line-height:1.17;overflow:hidden}.node .label:hover{background:#f1f7f2}.node strong{display:block;font-size:.9rem;color:#185138;margin-bottom:3px}.node .label span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-weight:600;font-size:.79rem}.node .toggle{padding:5px;margin-right:6px;font-size:.75rem;min-width:31px}.node.root{background:#154b33;color:white}.node.root strong{color:#def5e5}.node.root .label:hover{background:#235c43}.node.root .toggle{color:#163e2c}
 #mini{position:absolute;bottom:14px;right:14px;width:146px;height:88px;border:1px solid #a8beb0;border-radius:8px;background:#fcfefc;cursor:crosshair;box-shadow:0 4px 12px #13261912}
-aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:22px;position:relative}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.panelhead>span,.detail-label{font-size:.72rem;font-weight:750;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}aside h2{font-size:1.32rem;line-height:1.2;margin:13px 0 15px;overflow-wrap:anywhere}.sig{font-size:.85rem;color:var(--green);font-weight:800;margin-top:18px}.sig+h2{margin-top:4px}.path{font-size:.81rem;color:var(--muted);line-height:1.5}.occupation{margin:19px 0}.occupation p{margin:4px 0}.status{font-size:.82rem;color:#704820;background:#fff5e5;border-radius:7px;padding:9px;margin:10px 0}aside label{display:block;margin:14px 0 6px}aside small{display:block;color:var(--muted);margin-top:6px;line-height:1.4}.local-note{min-height:2.4em}.children{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 15px}.children button{font-size:.78rem;padding:5px 7px;text-align:left}.source{color:var(--muted);font-size:.78rem;padding-top:11px;border-top:1px solid var(--line)}[hidden]{display:none!important}dialog{border:1px solid var(--line);border-radius:14px;color:var(--ink);width:min(540px,90vw);padding:23px}dialog::backdrop{background:#10241f88}dialog h2{margin-top:0}dialog li{margin:9px 0}dialog footer{text-align:right}
+aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:22px;position:relative}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.panelhead>span,.detail-label{font-size:.72rem;font-weight:750;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}aside h2{font-size:1.32rem;line-height:1.2;margin:13px 0 15px;overflow-wrap:anywhere}.sig{font-size:.85rem;color:var(--green);font-weight:800;margin-top:18px}.sig+h2{margin-top:4px}.path{font-size:.81rem;color:var(--muted);line-height:1.5}.occupation{margin:19px 0}.occupation p{margin:4px 0}.status{font-size:.82rem;color:#704820;background:#fff5e5;border-radius:7px;padding:9px;margin:10px 0}aside label{display:block;margin:14px 0 6px}aside small{display:block;color:var(--muted);margin-top:6px;line-height:1.4}.local-note{min-height:2.4em}.children{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 15px}.children button{font-size:.78rem;padding:5px 7px;text-align:left}.source{color:var(--muted);font-size:.78rem;padding-top:11px;border-top:1px solid var(--line)}[hidden]{display:none!important}dialog{border:1px solid var(--line);border-radius:14px;color:var(--ink);width:min(540px,90vw);max-height:85dvh;overflow:auto;padding:23px}dialog::backdrop{background:#10241f88}dialog h2{margin-top:0}dialog li{margin:9px 0}dialog footer{text-align:right}
 @media(max-width:850px){main{grid-template-columns:1fr;height:calc(100dvh - 81px);min-height:390px}header{padding:15px}aside{position:absolute;right:8px;top:145px;bottom:10px;width:min(330px,calc(100% - 16px));z-index:4;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 26px #10241f33}.search{min-width:100%}.toolbar{padding:8px}#mini{width:100px;height:66px}}
 
 .ring{fill:none;stroke:#acc4b4;stroke-width:1;stroke-dasharray:3 6}
@@ -31,6 +31,14 @@ aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:2
   .toolbar button{font-size:.75rem;padding:7px}
   aside{top:auto;bottom:12px;max-height:65dvh}
 }
+
+.pending-section{border-top:1px solid var(--line);padding:12px 0}
+.pending-section summary{cursor:pointer;font-weight:700}
+#plan-file{display:block;max-width:100%;margin-top:7px}
+#plan-files{padding-left:20px;overflow-wrap:anywhere}
+#plan-files button{margin-left:6px}
+#plan-dialog footer{margin-top:12px}
+.plan-link{display:inline-block;margin:3px 0 9px;font-weight:700}
 </style>
 </head>
 <body>
@@ -39,7 +47,7 @@ aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:2
 <section class="workspace" aria-label="Explorar organograma">
 <div class="toolbar">
 <div class="search"><input id="search" type="search" placeholder="Buscar sigla, setor ou ocupante" aria-label="Buscar sigla, setor ou ocupante" aria-controls="results" autocomplete="off"><div id="results" hidden></div></div>
-<button id="labs" aria-haspopup="dialog">Laboratórios a mapear</button><button id="overview">Visão geral</button><button id="expand">Expandir tudo</button><button id="export">Baixar indicações</button>
+<button id="pending" aria-haspopup="dialog">Pendências de Mapeamento</button><button id="problems" aria-haspopup="dialog">Problemas Mapeados</button><button id="overview">Visão geral</button><button id="expand">Expandir tudo</button><button id="export">Baixar indicações</button>
 </div>
 <div id="view" tabindex="0" aria-label="Diagrama. Use as setas para mover e mais ou menos para ampliar ou reduzir.">
 <div id="scene"><svg id="edges" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg><div id="cards"></div></div>
@@ -49,8 +57,9 @@ aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:2
 </section>
 <aside id="details" hidden aria-label="Detalhes do item selecionado"></aside>
 </main>
-<dialog id="lab-list" aria-labelledby="lab-list-title">
-<h2 id="lab-list-title">Laboratórios a mapear</h2>
+<dialog id="pending-list" aria-labelledby="pending-title">
+<h2 id="pending-title">Pendências de Mapeamento</h2>
+<details class="pending-section"><summary>Laboratórios</summary>
 <p>Confirmar o vínculo no campus, a localização e quem responde por cada laboratório.</p>
 <ul>
 <li>IFMaker</li>
@@ -62,8 +71,62 @@ aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:2
 <li><strong>Mecânica</strong> — Soldagem, Usinagem, Ajustagem, Análise de Materiais, Automação, Máquinas Térmicas, Projetos, Mecânica dos Fluidos e Acionamento de Motores e CLP.</li>
 <li><strong>Ciências</strong> — Biologia, Física e Química.</li>
 </ul>
+</details>
+<details class="pending-section"><summary>Instâncias e iniciativas</summary>
+<ul>
+<li><strong>TecnoIF Campo Grande</strong> — unidade local da Incubadora Mista e Social de Empresas do IFMS. Apoia ideias, projetos e negócios inovadores. Confirmar equipe, espaço, fluxo de atendimento e vínculo administrativo local. <a href="https://selecao.ifms.edu.br/perfil/outras/edital-072-2025-edital-para-ingresso-na-tecnoif-propi-ifms" target="_blank" rel="noopener">Edital e contato da unidade</a>.</li>
+<li><strong>Núcleos Docentes Estruturantes (NDEs)</strong> — identificar os núcleos por curso ou eixo e confirmar as portarias vigentes.</li>
+<li><strong>Colegiados</strong> — identificar os colegiados de graduação, pós-graduação e cursos técnicos ou eixos.</li>
+<li><strong>Grêmio estudantil</strong> — confirmar a entidade em atividade e seu canal de contato.</li>
+<li><strong>Centros acadêmicos</strong> — identificar os centros em atividade e os cursos representados.</li>
+<li><strong>Conselho de Campus</strong> — confirmar a composição vigente do órgão consultivo de assessoramento à Direção-Geral.</li>
+<li><strong>Subcomissão Própria de Avaliação (SPA)</strong> — confirmar a composição local e o vínculo com a Comissão Própria de Avaliação (CPA).</li>
+<li><strong>Representação de turmas</strong> — verificar como é organizada nos cursos técnicos e superiores.</li>
+<li><strong>Outras iniciativas estudantis</strong> — verificar se há DCE, atléticas, empresas juniores e coletivos estudantis em atividade no campus.</li>
+<li><strong>Negritude em Debate</strong> — iniciativa de extensão de Campo Grande. Confirmar próximas edições. <a href="https://www.ifms.edu.br/noticias/2025/iniciada-execucao-de-projetos-com-temas-etnico-raciais" target="_blank" rel="noopener">Referência institucional</a>.</li>
+</ul>
+<p class="source">Referências institucionais. <a href="https://www.ifms.edu.br/acesso-a-informacao/institucional/estrutura-organizacional/organogramas/pdf/organograma-do-campus-campo-grande" target="_blank" rel="noopener">Organograma oficial do campus</a> · <a href="https://www.ifms.edu.br/centrais-de-conteudo/documentos-institucionais/estatuto-e-regimentos/regimento-do-conselho-de-campus-do-ifms.pdf" target="_blank" rel="noopener">Regimento do Conselho de Campus</a></p>
+</details>
+<details class="pending-section"><summary>Eventos institucionais</summary>
+<p>Eventos previstos no calendário acadêmico. Referência inicial: 2026.</p>
+
+<ul>
+<li><strong>Semana de Ciência e Tecnologia (SCT)</strong> — Programação anual dos campi. A edição de Campo Grande inclui a Feira de Ciência e Tecnologia de Campo Grande (FeciNTEC). <a href="https://www.ifms.edu.br/assuntos/eventos/feiras/feiras-de-ciencia-e-tecnologia-2026/feiras-de-ciencia-e-tecnologia-2026" target="_blank" rel="noopener">Fonte oficial</a></li>
+<li><strong>Semana do Meio Ambiente e Festival de Arte e Cultura</strong> — Eventos previstos no calendário acadêmico institucional de 2026. <a href="https://www.ifms.edu.br/noticias/2026/calendarios-academicos-para-2026" target="_blank" rel="noopener">Fonte oficial</a></li>
+<li><strong>Jogos do IFMS (JIFMS)</strong> — Competição multicampi. Campo Grande foi anunciado como sede da edição de 2026. <a href="https://www.ifms.edu.br/noticias/2026/jifms-2026-campo-grande-sedia-jogos-ifms" target="_blank" rel="noopener">Fonte oficial</a></li>
+</ul>
+
+<h3>Informações para o plano de gestão</h3>
+<p>Para cada evento, levantar período, setor ou comissão responsável, papel do campus (sede, organização ou participação), público, parceiros, orçamento e infraestrutura.</p>
+<p class="source"><a href="https://www.ifms.edu.br/centrais-de-conteudo/documentos-institucionais/calendarios/calendarios-2026" target="_blank" rel="noopener">Calendários acadêmicos</a> · <a href="https://www.ifms.edu.br/acesso-a-informacao/institucional/estrutura-organizacional/orgaos-de-apoio-e-controle/comunicacao/agenda-ifms" target="_blank" rel="noopener">Agenda IFMS</a></p>
+</details>
 <footer><form method="dialog"><button>Fechar</button></form></footer>
 </dialog>
+<dialog id="problems-list" aria-labelledby="problems-title">
+<h2 id="problems-title">Problemas Mapeados</h2>
+<p>Levantamento inicial baseado em relatos sobre o campus. Os candidatos podem usar estes pontos para fundamentar propostas nos seus planos de gestão.</p>
+<ul>
+<li><strong>Falta de espaço adequado para descanso estudantil.</strong> Há relatos de estudantes descansando em escadas e corredores. Levantar a demanda por turno, os espaços disponíveis e as condições de uso. A proposta de redário pode ser avaliada nesse contexto.</li>
+<li><strong>Limitação de materiais no Laboratório de Robótica.</strong> A disponibilidade de equipamentos e insumos restringe as atividades. Levantar o inventário, as necessidades de manutenção e os materiais necessários para aulas, oficinas e projetos.</li>
+<li><strong>Necessidade de infraestrutura para treinos de robótica.</strong> Há uma demanda apresentada por arenas de resgate e um palco para robótica artística. Verificar o andamento do pedido, o espaço disponível e os recursos para aquisição e montagem.</li>
+</ul>
+<h3>Como incorporar ao Plano de Gestão</h3>
+<p>Indique o problema, quem ele afeta e o que falta confirmar. Depois, proponha uma ação com setor responsável, prazo, recursos e um indicador para acompanhar o resultado.</p>
+<footer><form method="dialog"><button>Fechar</button></form></footer>
+</dialog>
+<dialog id="plan-dialog" aria-labelledby="plan-title">
+<h2 id="plan-title">Plano de Gestão</h2>
+<p id="plan-node"></p>
+<button id="plan-problems" type="button" aria-haspopup="dialog">Consultar problemas mapeados</button>
+<label for="plan-file">Anexar plano em PDF</label>
+<input id="plan-file" type="file" accept=".pdf,application/pdf">
+<p id="plan-status" role="status"></p>
+<ul id="plan-files"></ul>
+<p>Os anexos ficam neste navegador. Para compartilhar os planos, baixe e envie a cópia HTML com os PDFs incluídos.</p>
+<button id="plan-export" type="button">Baixar organograma com planos</button>
+<footer><form method="dialog"><button>Fechar</button></form></footer>
+</dialog>
+<script type="application/json" id="embedded-plans">[]</script>
 <dialog id="info">
 <h2>Como explorar o organograma</h2>
 <ul>
@@ -267,6 +330,14 @@ function inspect(id, focusClose = true) {
   const person = element('div','','occupation');
   person.append(element('span',n.id === 'ROBOTICA' ? 'Coordenador' : 'Ocupante informado no PowerPoint','detail-label'),element('p',n.name || '—'));
   details.append(person);
+  const planLink = element('a', 'Plano de Gestão', 'plan-link');
+  planLink.href = '#plan-dialog';
+  planLink.setAttribute('aria-haspopup', 'dialog');
+  planLink.onclick = event => {
+    event.preventDefault();
+    showPlans(n);
+  };
+  details.append(planLink);
   const label = element('label','Possível substituto','detail-label');
   label.htmlFor = 'candidate';
   const input = document.createElement('input');
@@ -359,7 +430,9 @@ $('expand').onclick = () => {
   render();
   fit();
 };
-$('labs').onclick = () => $('lab-list').showModal();
+$('problems').onclick = () => $('problems-list').showModal();
+$('plan-problems').onclick = $('problems').onclick;
+$('pending').onclick = () => $('pending-list').showModal();
 $('help').onclick = () => $('info').showModal();
 
 view.addEventListener('wheel', e => {
@@ -454,6 +527,131 @@ $('export').onclick = () => {
   a.click();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
 };
+const planSource = document.documentElement.cloneNode(true);
+const embeddedPlans = JSON.parse($('embedded-plans').textContent);
+const planDialog = $('plan-dialog');
+const planInput = $('plan-file');
+const planStatus = $('plan-status');
+const planFiles = $('plan-files');
+const planExport = $('plan-export');
+let planNode;
+
+function planStore(mode, operation) {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('ifms-cg-planos', 1);
+    request.onupgradeneeded = () => request.result.createObjectStore('plans', {keyPath:'key'});
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const db = request.result;
+      const tx = db.transaction('plans', mode);
+      const action = operation(tx.objectStore('plans'));
+      tx.oncomplete = () => { db.close(); resolve(action.result); };
+      tx.onabort = () => { db.close(); reject(tx.error); };
+    };
+  });
+}
+
+function downloadPlanFile(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = element('a', '');
+  link.href = url;
+  link.download = filename;
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+}
+
+async function refreshPlans(id) {
+  let local = [];
+  try {
+    local = await planStore('readonly', store => store.getAll());
+  } catch {
+    if (planNode === id) planStatus.textContent = 'O armazenamento local está indisponível neste navegador.';
+  }
+  if (planNode !== id) return;
+  const items = [...embeddedPlans, ...local].filter(plan => plan.node === id);
+  planFiles.replaceChildren();
+  if (!items.length) planFiles.append(element('li', 'Nenhum plano anexado.'));
+  for (const plan of items) {
+    const row = element('li', plan.name + ' ');
+    row.append(button('Baixar PDF', () => {
+      const pdf = plan.file || new Blob([Uint8Array.from(atob(plan.base64), c => c.charCodeAt(0))], {type:'application/pdf'});
+      downloadPlanFile(pdf, plan.name);
+    }));
+    if (plan.file) {
+      row.append(button('Remover', async () => {
+        if (!confirm('Remover o anexo ' + plan.name + '?')) return;
+        try {
+          await planStore('readwrite', store => store.delete(plan.key));
+          await refreshPlans(id);
+        } catch {
+          planStatus.textContent = 'Não foi possível remover o anexo.';
+        }
+      }));
+    }
+    planFiles.append(row);
+  }
+}
+
+function showPlans(node) {
+  planNode = node.id;
+  $('plan-node').textContent = [node.sig, node.title].filter(Boolean).join(' · ');
+  planStatus.textContent = '';
+  planInput.value = '';
+  planFiles.replaceChildren();
+  planDialog.showModal();
+  refreshPlans(planNode);
+}
+
+planInput.onchange = async () => {
+  const file = planInput.files[0];
+  const id = planNode;
+  if (!file) return;
+  planInput.disabled = true;
+  try {
+    if (await file.slice(0,5).text() !== '%PDF-') {
+      planStatus.textContent = 'Selecione um arquivo PDF válido.';
+      return;
+    }
+    const key = JSON.stringify([id, file.name, file.size, file.lastModified]);
+    await planStore('readwrite', store => store.put({key, node:id, name:file.name, file}));
+    if (planNode === id) {
+      planStatus.textContent = 'Plano anexado neste navegador.';
+      await refreshPlans(id);
+    }
+  } catch {
+    if (planNode === id) planStatus.textContent = 'Não foi possível guardar o PDF neste navegador.';
+  } finally {
+    planInput.value = '';
+    planInput.disabled = false;
+  }
+};
+
+planExport.onclick = async () => {
+  planExport.disabled = true;
+  try {
+    const local = await planStore('readonly', store => store.getAll());
+    const plans = new Map(embeddedPlans.map(plan => [plan.key, plan]));
+    for (const {key, node, name, file} of local) {
+      const url = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(file);
+      });
+      plans.set(key, {key, node, name, base64:url.split(',')[1]});
+    }
+    planSource.querySelector('#embedded-plans').textContent =
+      JSON.stringify([...plans.values()]).replaceAll('<', '\\u003c');
+    const html = '<!doctype html>\n' + planSource.outerHTML;
+    downloadPlanFile(new Blob([html], {type:'text/html;charset=utf-8'}), 'Organograma_IFMS_CG_com_Planos.html');
+    planStatus.textContent = 'Cópia com os planos gerada.';
+  } catch {
+    planStatus.textContent = 'Não foi possível gerar a cópia com os planos.';
+  } finally {
+    planExport.disabled = false;
+  }
+};
+
 main.style.gridTemplateColumns = '1fr';
 render();
 fit();
