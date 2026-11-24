@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Organograma interativo do IFMS Campus Campo Grande">
-<title>Organograma interativo · IFMS Campo Grande</title>
+<title>Organograma circular · IFMS Campo Grande</title>
 <style>
 :root{color-scheme:light;--ink:#182b23;--muted:#52675c;--line:#d7e2da;--green:#17623f;--paper:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#eff4ef}
 *{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #1d8962;outline-offset:3px}button{border:1px solid var(--line);border-radius:8px;background:white;padding:8px 11px;font-weight:650}button:hover{background:#ebf5ed}a{color:var(--green)}
@@ -14,10 +14,27 @@ main{display:grid;grid-template-columns:minmax(0,1fr) 320px;height:calc(100dvh -
 #mini{position:absolute;bottom:14px;right:14px;width:146px;height:88px;border:1px solid #a8beb0;border-radius:8px;background:#fcfefc;cursor:crosshair;box-shadow:0 4px 12px #13261912}
 aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:22px;position:relative}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:8px}.panelhead>span,.detail-label{font-size:.72rem;font-weight:750;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}aside h2{font-size:1.32rem;line-height:1.2;margin:13px 0 15px;overflow-wrap:anywhere}.sig{font-size:.85rem;color:var(--green);font-weight:800;margin-top:18px}.sig+h2{margin-top:4px}.path{font-size:.81rem;color:var(--muted);line-height:1.5}.occupation{margin:19px 0}.occupation p{margin:4px 0}.status{font-size:.82rem;color:#704820;background:#fff5e5;border-radius:7px;padding:9px;margin:10px 0}aside label{display:block;margin:14px 0 6px}aside small{display:block;color:var(--muted);margin-top:6px;line-height:1.4}.local-note{min-height:2.4em}.children{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 15px}.children button{font-size:.78rem;padding:5px 7px;text-align:left}.source{color:var(--muted);font-size:.78rem;padding-top:11px;border-top:1px solid var(--line)}[hidden]{display:none!important}dialog{border:1px solid var(--line);border-radius:14px;color:var(--ink);width:min(540px,90vw);padding:23px}dialog::backdrop{background:#10241f88}dialog h2{margin-top:0}dialog li{margin:9px 0}dialog footer{text-align:right}
 @media(max-width:850px){main{grid-template-columns:1fr;height:calc(100dvh - 81px);min-height:390px}header{padding:15px}aside{position:absolute;right:8px;top:145px;bottom:10px;width:min(330px,calc(100% - 16px));z-index:4;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 26px #10241f33}.search{min-width:100%}.toolbar{padding:8px}#mini{width:100px;height:66px}}
+
+.ring{fill:none;stroke:#acc4b4;stroke-width:1;stroke-dasharray:3 6}
+.edge{stroke:var(--branch,#7c9987);stroke-opacity:.75}
+.node{width:150px;height:70px}
+.node .label{padding:5px 6px}
+.node .toggle{margin-right:4px;padding:4px;min-width:26px}
+.node.root{border-color:#154b33}
+@media(max-width:600px){
+  .node{width:80px;height:50px;border-left-width:3px}
+  .node .label{padding:3px;line-height:1.12}
+  .node strong{font-size:.73rem;margin-bottom:0}
+  .node .label span{font-size:.67rem;-webkit-line-clamp:3;overflow-wrap:anywhere}
+  .node .label strong + span{display:none}
+  .node .toggle{padding:2px;min-width:20px;margin-right:2px;font-size:.62rem;min-height:32px}
+  .toolbar button{font-size:.75rem;padding:7px}
+  aside{top:auto;bottom:12px;max-height:65dvh}
+}
 </style>
 </head>
 <body>
-<header><div><p>IFMS · Campus Campo Grande</p><h1>Organograma interativo</h1></div><button id="help">Ajuda e fontes</button></header>
+<header><div><p>IFMS · Campus Campo Grande</p><h1>Organograma circular</h1></div><button id="help">Ajuda e fontes</button></header>
 <main id="main">
 <section class="workspace" aria-label="Explorar organograma">
 <div class="toolbar">
@@ -51,6 +68,7 @@ aside{overflow:auto;background:white;border-left:1px solid var(--line);padding:2
 <h2>Como explorar o organograma</h2>
 <ul>
 <li>Arraste o fundo para mover o diagrama. Use a roda do mouse, o gesto de pinça ou os botões de zoom.</li>
+<li>A Direção-Geral fica no centro. Cada anel mostra um nível de vínculo na estrutura.</li>
 <li>Clique no cartão para ver detalhes. Use o botão na lateral do cartão para abrir ou recolher um ramo.</li>
 <li>As linhas tracejadas indicam vínculos de pós-graduação a confirmar. As linhas pontilhadas identificam núcleos de assessoramento e representações ligados à Direção-Geral.</li>
 <li>Os campos de possível substituto são guardados neste navegador quando o armazenamento local está disponível. O botão <strong>Baixar indicações</strong> gera um CSV.</li>
@@ -70,7 +88,8 @@ const data = JSON.parse($('data').textContent);
 const nodes = new Map(data.map(item => [item.id, {...item, children: []}]));
 for (const item of nodes.values()) if (item.parent) nodes.get(item.parent).children.push(item.id);
 
-const W = 252, H = 76, DX = 320, DY = 91;
+const compact = matchMedia('(max-width:600px)');
+let W = 150, H = 70;
 const view = $('view'), scene = $('scene'), cards = $('cards'), edges = $('edges');
 const main = $('main'), details = $('details'), mini = $('mini'), ctx = mini.getContext('2d');
 const storageKey = 'ifms-cg-organograma-v2-indicacoes';
@@ -103,23 +122,78 @@ function element(tag, value, cls) {
 }
 function render() {
   points = new Map();
-  let row = 0, deepest = 0;
-  function place(id, depth) {
-    const n = nodes.get(id);
-    const children = open.has(id) ? n.children : [];
-    const ys = children.map(child => place(child, depth + 1));
-    const y = ys.length ? (ys[0] + ys.at(-1)) / 2 : row++ * DY;
-    points.set(id, {x: depth * DX, y});
-    deepest = Math.max(deepest, depth);
-    return y;
+  W = compact.matches ? 80 : 150;
+  H = compact.matches ? 50 : 70;
+  const ringNodes = [];
+  const weights = new Map();
+  const turn = Math.PI * 2;
+
+  function weight(id) {
+    const children = open.has(id) ? nodes.get(id).children : [];
+    const value = Math.max(1, children.reduce((total, child) => total + weight(child), 0));
+    weights.set(id, value);
+    return value;
   }
-  place('DIRGE', 0);
-  width = deepest * DX + W;
-  height = (row - 1) * DY + H;
+  weight('DIRGE');
+
+  function place(id, depth, start, span) {
+    const angle = start + span / 2;
+    (ringNodes[depth] ??= []).push({id, angle, x: Math.cos(angle), y: Math.sin(angle)});
+    const children = open.has(id) ? nodes.get(id).children : [];
+    const total = children.reduce((sum, child) => sum + weights.get(child), 0);
+    for (const child of children) {
+      const share = span * (.5 / children.length + .5 * weights.get(child) / total);
+      place(child, depth + 1, start, share);
+      start += share;
+    }
+  }
+  const firstSpan = turn * (.5 / nodes.get('DIRGE').children.length
+    + .5 * weights.get('DIREN') / weights.get('DIRGE'));
+  place('DIRGE', 0, -Math.PI / 2 - firstSpan / 2, turn);
+
+  const radii = [];
+  let radius = 0;
+  let extentX = W / 2, extentY = H / 2;
+  const gap = compact.matches ? 8 : 16;
+  for (const [depth, ring] of ringNodes.entries()) {
+    if (depth) radius += Math.hypot(W + gap, H + gap);
+    for (const [index, a] of ring.entries()) {
+      for (const b of ring.slice(index + 1)) {
+        radius = Math.max(radius, Math.min(
+          (W + gap) / Math.abs(a.x - b.x),
+          (H + gap) / Math.abs(a.y - b.y)
+        ));
+      }
+    }
+    radii.push(radius);
+    for (const point of ring) {
+      const x = point.x * radius;
+      const y = point.y * radius;
+      points.set(point.id, {x, y});
+      extentX = Math.max(extentX, Math.abs(x) + W / 2);
+      extentY = Math.max(extentY, Math.abs(y) + H / 2);
+    }
+    extentX = Math.max(extentX, radius);
+    extentY = Math.max(extentY, radius);
+  }
+  width = 2 * extentX;
+  height = 2 * extentY;
+  for (const pt of points.values()) {
+    pt.x += extentX - W / 2;
+    pt.y += extentY - H / 2;
+  }
   cards.replaceChildren();
   edges.replaceChildren();
   edges.setAttribute('width', width);
   edges.setAttribute('height', height);
+  for (const radius of radii.slice(1)) {
+    const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    ring.setAttribute('class', 'ring');
+    ring.setAttribute('cx', extentX);
+    ring.setAttribute('cy', extentY);
+    ring.setAttribute('r', radius);
+    edges.append(ring);
+  }
 
   for (const n of nodes.values()) {
     const pt = points.get(n.id);
@@ -127,8 +201,8 @@ function render() {
     const parent = points.get(n.parent);
     if (parent) {
       const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-      const start = parent.x + W, mid = (start + pt.x)/2, y = pt.y + H/2, py = parent.y + H/2;
-      path.setAttribute('d', `M ${start} ${py} H ${mid} V ${y} H ${pt.x}`);
+      path.setAttribute('d', `M ${parent.x + W / 2} ${parent.y + H / 2} L ${pt.x + W / 2} ${pt.y + H / 2}`);
+      path.style.setProperty('--branch', colors[ancestry(n.id)[1]?.id] || colors.DIRGE);
       path.setAttribute('class', 'edge ' + (n.kind === 'Vínculo a confirmar' ? 'pending' : /Assessoramento|Representação/.test(n.kind) ? 'related' : ''));
       edges.append(path);
     }
@@ -250,8 +324,8 @@ function update() {
   ctx.strokeRect(...rect);
 }
 function fit() {
-  const z = Math.min(1.2,(view.clientWidth-46)/width,(view.clientHeight-56)/height);
-  camera = {z: Math.max(.12,z),x:0,y:0};
+  const z = Math.min(1.2,(view.clientWidth-(compact.matches ? 12 : 38))/width,(view.clientHeight-64)/height);
+  camera = {z: Math.max(.035,z),x:0,y:0};
   camera.x = (view.clientWidth-width*camera.z)/2;
   camera.y = (view.clientHeight-height*camera.z)/2;
   update();
@@ -263,7 +337,7 @@ function center(id,z) {
   update();
 }
 function zoom(factor,x=view.clientWidth/2,y=view.clientHeight/2) {
-  const next = Math.min(2.8,Math.max(.12,camera.z*factor));
+  const next = Math.min(2.8,Math.max(.035,camera.z*factor));
   camera.x = x - (x-camera.x)*next/camera.z;
   camera.y = y - (y-camera.y)*next/camera.z;
   camera.z = next;
@@ -384,6 +458,11 @@ main.style.gridTemplateColumns = '1fr';
 render();
 fit();
 new ResizeObserver(update).observe(view);
+compact.addEventListener('change', () => {
+  render();
+  if (selected) center(selected, 1);
+  else fit();
+});
 </script>
 </body>
 </html>
